@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deception — Murder in Hong Kong (Host)</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="brand">
+      <div class="kicker">Investigação · Homicídio</div>
+      <h1>DECEPTION<span class="sub">MURDER IN HONG KONG</span></h1>
+    </header>
+
+    <!-- Tela inicial -->
+    <section id="screen-landing" class="panel center">
+      <p class="muted" style="max-width:520px;margin:0 auto 20px;">
+        Este dispositivo é o <strong>computador/painel principal</strong>. Crie uma partida e
+        convide os jogadores a entrarem pelo celular (QR Code ou URL).
+      </p>
+      <button id="btn-create" class="btn btn-primary btn-lg btn-block">🕵️ Criar Partida</button>
+      <p class="muted mt-sm">O servidor deve estar rodando nesta máquina (node server.js).</p>
+    </section>
+
+    <!-- Sala / Lobby -->
+    <section id="screen-room" class="hidden">
+      <div class="panel center">
+        <div class="section-title">Código da sala</div>
+        <div id="room-code" class="code-big">—</div>
+        <div class="grid-2 mt">
+          <div class="qr-wrap">
+            <img id="room-qr" alt="QR Code" />
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:10px;text-align:left;">
+            <div class="section-title">Para entrar no celular</div>
+            <p class="muted">Escaneie o QR Code <strong>ou</strong> abra a URL abaixo:</p>
+            <div id="join-url" class="secret-box"><span class="lbl">URL</span><br /><span class="val" style="font-size:15px;word-break:break-all;"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="section-title">Jogadores — <span id="player-count">0</span> conectados</div>
+        <div id="player-list" class="player-list"></div>
+        <div class="center mt">
+          <button id="btn-start" class="btn btn-primary btn-lg">Iniciar Partida</button>
+        </div>
+        <p class="muted center mt-sm" id="start-hint">Mínimo de 4 jogadores.</p>
+      </div>
+    </section>
+
+    <!-- Painel do jogo -->
+    <section id="screen-game" class="hidden">
+      <!-- Resultado -->
+      <div id="result-panel" class="panel hidden"></div>
+
+      <div class="phase-banner">
+        <div>
+          <div class="phase-label">Fase · Rodada <span id="round-indicator">—</span></div>
+          <div id="phase-name" class="phase-name">—</div>
+        </div>
+        <div id="timer-box" style="min-width:150px;">
+          <div class="phase-label">Tempo</div>
+          <div id="timer" class="timer">--:--</div>
+        </div>
+      </div>
+
+      <!-- Board de evidências -->
+      <div id="evidence-panel" class="panel mt hidden">
+        <div class="section-title">Cena do crime (balas do Cientista Forense)</div>
+        <div id="evidence-board" class="evidence-board"></div>
+      </div>
+
+      <div class="grid-2 mt">
+        <div class="panel">
+          <div class="section-title">Jogadores <span class="muted">(toque para ver as cartas)</span></div>
+          <div id="game-player-list" class="player-list"></div>
+          <div class="section-title mt">Placar</div>
+          <div id="scoreboard" class="player-list"></div>
+        </div>
+        <div class="panel">
+          <div class="section-title">Cartas de <span id="selected-player-name">—</span></div>
+          <div class="section-title" style="letter-spacing:0.05em;">Evidências (Pistas)</div>
+          <div id="selected-clues" class="cards-grid"></div>
+          <div class="section-title mt">Armas (Meios)</div>
+          <div id="selected-means" class="cards-grid"></div>
+        </div>
+      </div>
+
+      <div class="panel center mt">
+        <div id="host-controls">
+          <button id="btn-investigate" class="btn btn-teal btn-lg hidden">Iniciar Investigação</button>
+          <button id="btn-end-allies" class="btn btn-primary btn-lg hidden">Concluir Fase dos Aliados</button>
+          <button id="btn-end-evidence" class="btn btn-primary btn-lg hidden">Concluir Coleta de Evidências</button>
+          <button id="btn-end-presentation" class="btn btn-primary btn-lg hidden">Encerrar Rodada</button>
+          <button id="btn-play-again" class="btn btn-teal btn-lg hidden">Jogar Novamente</button>
+        </div>
+        <div id="host-sub" class="mt-sm">
+          <button id="btn-lobby" class="btn hidden">Voltar ao Lobby</button>
+          <button id="btn-reset-scores" class="btn hidden">Zerar Placar</button>
+        </div>
+        <p id="host-hint" class="muted center mt-sm"></p>
+      </div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/host.js"></script>
+</body>
+</html>

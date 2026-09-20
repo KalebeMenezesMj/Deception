@@ -1,0 +1,22 @@
+{
+  "name": "deception-mihk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Versão digital multiplayer de Deception: Murder in Hong Kong (LAN/local)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/test-flow.js && node test/test-murderer-win.js && node test/test-reconnect.js && node test/test-expansion.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.3"
+  }
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deception — Jogador</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="brand">
+      <div class="kicker">Investigação · Homicídio</div>
+      <h1>DECEPTION<span class="sub">MURDER IN HONG KONG</span></h1>
+    </header>
+
+    <!-- Entrar -->
+    <section id="screen-join" class="panel">
+      <div class="section-title">Entrar na partida</div>
+      <div class="field">
+        <label for="join-code">Código da sala</label>
+        <input id="join-code" maxlength="5" placeholder="A7K9P" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="join-name">Seu nome</label>
+        <input id="join-name" placeholder="Nome do jogador" autocomplete="off" />
+      </div>
+      <button id="btn-join" class="btn btn-primary btn-block btn-lg">Entrar na partida</button>
+      <p id="join-error" class="muted center mt-sm"></p>
+    </section>
+
+    <!-- Lobby -->
+    <section id="screen-lobby" class="panel center hidden">
+      <div class="section-title">Sala <span id="lobby-code">—</span></div>
+      <p style="font-size:20px;">Você está na sala.</p>
+      <p class="muted mt-sm">Aguardando o início da partida...</p>
+    </section>
+
+    <!-- Papel -->
+    <section id="screen-role" class="panel hidden">
+      <div id="role-card" class="role-card"></div>
+      <div id="role-secret" class="mt"></div>
+      <div class="center mt">
+        <button id="btn-understood" class="btn btn-primary btn-lg">Entendi</button>
+      </div>
+      <p id="role-waiting" class="muted center mt-sm hidden">Aguardando os outros jogadores confirmarem...</p>
+    </section>
+
+    <!-- Escolha do assassino -->
+    <section id="screen-murderer" class="panel hidden">
+      <div class="role-name murderers center" style="font-size:30px;">VOCÊ É O ASSASSINO</div>
+      <p class="muted center mt-sm">Escolha 1 evidência (pista) e 1 arma (meio) das SUAS cartas.</p>
+      <div class="section-title mt">Escolha a evidência (pista):</div>
+      <div id="murder-clues" class="cards-grid"></div>
+      <div class="section-title mt">Escolha a arma (meio):</div>
+      <div id="murder-means" class="cards-grid"></div>
+      <div class="center mt">
+        <button id="btn-confirm-murder" class="btn btn-primary btn-lg" disabled>Confirmar</button>
+      </div>
+      <p id="murder-summary" class="muted center mt-sm"></p>
+    </section>
+
+    <!-- Confirmação / forense -->
+    <section id="screen-setup-done" class="panel center hidden">
+      <div id="setup-done-body"></div>
+    </section>
+
+    <!-- Coleta de evidências (forense) -->
+    <section id="screen-evidence" class="panel hidden">
+      <div id="evidence-solution" class="secret-box"></div>
+      <div class="section-title mt">Rodada <span id="ev-round">1</span> — Coleta de Evidências</div>
+      <p class="muted">Posicione as <strong>6 balas</strong>: 1 na <strong>Causa da Morte</strong>, 1 no
+        <strong>Local do Crime</strong> e 4 em outras pistas.</p>
+      <div id="evidence-progress" class="muted mt-sm"></div>
+      <div id="evidence-builder" class="mt"></div>
+    </section>
+
+    <!-- Fase dos Aliados: técnico de laboratório -->
+    <section id="screen-allies-labtech" class="panel hidden">
+      <div class="role-name investigators center" style="font-size:24px;">FASE DOS ALIADOS</div>
+      <p class="muted center mt-sm">Escolha 1 carta (de qualquer jogador) para verificar se faz parte da solução.</p>
+      <div id="lab-result" class="secret-box mt hidden"></div>
+      <div class="mt">
+        <div class="section-title">Cartas de <span id="lab-selected-name">—</span></div>
+        <div id="lab-player-tabs" class="player-list" style="flex-direction:row;flex-wrap:wrap;gap:6px;"></div>
+        <div class="section-title mt-sm">Evidências (Pistas)</div>
+        <div id="lab-clues" class="cards-grid"></div>
+        <div class="section-title mt-sm">Armas (Meios)</div>
+        <div id="lab-means" class="cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- Fase dos Aliados: infiltrado -->
+    <section id="screen-allies-insideman" class="panel hidden">
+      <div class="role-name murderers center" style="font-size:24px;">FASE DOS ALIADOS</div>
+      <p class="muted center mt-sm">Escolha 1 jogador que perderá o badge (a tentativa de acusação).</p>
+      <div id="insideman-targets" class="player-list mt"></div>
+    </section>
+
+    <!-- Acusação -->
+    <section id="screen-solve" class="panel hidden">
+      <div class="role-name investigators center" style="font-size:24px;">RESOLVER O CRIME</div>
+      <p class="muted center mt-sm">Escolha um jogador e, das cartas dele, a evidência e a arma.</p>
+      <div class="field mt">
+        <label>De quem são as cartas?</label>
+        <div id="solve-targets" class="player-list"></div>
+      </div>
+      <div id="solve-cards"></div>
+      <div class="center mt">
+        <button id="btn-confirm-solve" class="btn btn-primary btn-lg" disabled>Confirmar Acusação</button>
+        <button id="btn-cancel-solve" class="btn mt-sm">Cancelar</button>
+      </div>
+      <p id="solve-feedback" class="muted center mt-sm"></p>
+    </section>
+
+    <!-- Contra-ataque do assassino -->
+    <section id="screen-challenge" class="panel hidden">
+      <div class="role-name murderers center" style="font-size:26px;">VOCÊ FOI PEGO!</div>
+      <p class="muted center mt-sm">Última chance: se você acertar quem é a Testemunha, os culpados vencem.</p>
+      <div class="section-title mt">Quem é a Testemunha?</div>
+      <div id="challenge-targets" class="player-list"></div>
+    </section>
+
+    <!-- Jogo em andamento (investigadores) -->
+    <section id="screen-game" class="panel hidden">
+      <div class="phase-banner">
+        <div>
+          <div class="phase-label">Fase · Rodada <span id="p-round">1</span></div>
+          <div id="p-phase" class="phase-name">—</div>
+        </div>
+        <div>
+          <div class="phase-label">Tempo</div>
+          <div id="p-timer" class="timer" style="font-size:36px;">--:--</div>
+        </div>
+      </div>
+
+      <div class="mt">
+        <div class="section-title">Seu papel</div>
+        <div id="p-role" class="secret-box"><span class="val"></span></div>
+      </div>
+
+      <div id="p-solution" class="mt hidden"></div>
+
+      <div id="p-evidence" class="mt"></div>
+
+      <div class="mt">
+        <div class="section-title">Cartas de <span id="p-selected-name">você</span></div>
+        <div id="p-player-tabs" class="player-list" style="flex-direction:row;flex-wrap:wrap;gap:6px;"></div>
+        <div class="section-title mt-sm">Evidências (Pistas)</div>
+        <div id="p-clues" class="cards-grid"></div>
+        <div class="section-title mt-sm">Armas (Meios)</div>
+        <div id="p-means" class="cards-grid"></div>
+      </div>
+
+      <div class="center mt">
+        <button id="p-accuse" class="btn btn-primary btn-lg hidden">Resolver o Crime</button>
+      </div>
+    </section>
+
+    <!-- Resultado -->
+    <section id="screen-result" class="panel hidden">
+      <div id="player-result-body"></div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/player.js"></script>
+</body>
+</html>
