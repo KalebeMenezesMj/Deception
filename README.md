@@ -111,8 +111,11 @@ deception/
 │   ├── index.html         # tela do computador (host)
 │   ├── play.html          # tela do celular (jogador)
 │   ├── css/style.css
-│   └── js/{common,host,player}.js
-├── test/                  # 4 suítes de teste (socket.io-client)
+│   ├── js/{common,host,player}.js
+│   └── icons/             # 290 SVGs das cartas (gerados)
+├── lib/icons/             # definições dos ícones (chunk-*.js)
+├── tools/generate-icons.js # regenera os SVGs das cartas
+├── test/                  # 5 suítes de teste (socket.io-client)
 └── CHECKPOINTS/           # documentação do progresso por etapa
 ```
 

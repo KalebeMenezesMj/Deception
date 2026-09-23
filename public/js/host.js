@@ -187,14 +187,24 @@
 
     const hints = {
       roles: 'Aguardando todos confirmarem seus papéis...',
-      cards: 'Aguarde o assassino escolher arma + evidência. Depois clique em Iniciar Investigação.',
       allies: 'O Técnico e o Infiltrado estão agindo em segredo. Conclua quando terminarem.',
       evidence: 'O Cientista Forense está posicionando as 6 balas. Conclua quando terminar.',
       presentation: 'Discussão em andamento. Encerre a rodada para avançar.',
       challenge: 'O assassino está tentando identificar a testemunha...',
       result: 'Partida finalizada.',
     };
-    el('host-hint').textContent = hints[p] || '';
+
+    // Na fase de escolha do assassino, avisa o host quando ele já escolheu.
+    let hint = hints[p] || '';
+    if (p === 'cards') {
+      hint = current.solutionChosen
+        ? '✔ O assassino já escolheu. Clique em INICIAR INVESTIGAÇÃO para começar!'
+        : 'Aguarde o assassino escolher a arma e a evidência no celular dele...';
+      el('btn-investigate').classList.toggle('ready', !!current.solutionChosen);
+    } else {
+      el('btn-investigate').classList.remove('ready');
+    }
+    el('host-hint').textContent = hint;
   }
 
   function renderResult() {

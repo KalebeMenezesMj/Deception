@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8ecf2"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="184" height="264" rx="16" fill="url(#bg)" stroke="#2a3140" stroke-width="3"/>
+  <path d="M24 8 H176 Q192 8 192 24 V46 H8 V24 Q8 8 24 8 Z" fill="#e74c3c"/>
+  <rect x="8" y="46" width="184" height="6" fill="#c0392b"/>
+  <rect x="14" y="58" width="172" height="180" rx="10" fill="none" stroke="#c8cfdb" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <g transform="translate(100,130) scale(1.5)">
+    <g transform="translate(-50,-50)"><g fill="none" stroke="#1c2331" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M50 42 C46 32 36 34 35 42 C34 52 46 56 53 50 C58 46 56 38 48 36"/>
+  <path d="M33 44 C28 58 38 70 54 64"/>
+  <path d="M67 44 C72 58 62 70 46 64"/>
+  <path d="M50 64 V86"/>
+  <path d="M50 72 C40 68 33 74 37 82 C43 85 50 78 50 72"/>
+  <path d="M50 80 C60 76 67 82 63 90 C57 93 50 86 50 80"/>
+</g></g>
+  </g>
+  <text x="100" y="254" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="15" font-weight="700" fill="#1a1f2b">Rosa</text>
+</svg>

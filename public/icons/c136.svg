@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8ecf2"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="184" height="264" rx="16" fill="url(#bg)" stroke="#2a3140" stroke-width="3"/>
+  <path d="M24 8 H176 Q192 8 192 24 V46 H8 V24 Q8 8 24 8 Z" fill="#e74c3c"/>
+  <rect x="8" y="46" width="184" height="6" fill="#c0392b"/>
+  <rect x="14" y="58" width="172" height="180" rx="10" fill="none" stroke="#c8cfdb" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <g transform="translate(100,130) scale(1.5)">
+    <g transform="translate(-50,-50)"><g fill="none" stroke="#1c2331" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="rotate(-12 37 50)">
+    <rect x="20" y="25" width="34" height="50" rx="4"/>
+    <path d="M37 40 C33 35 28 38 28 43 C28 50 37 56 37 56 C37 56 46 50 46 43 C46 38 41 35 37 40"/>
+  </g>
+  <g transform="rotate(12 63 50)">
+    <rect x="46" y="25" width="34" height="50" rx="4"/>
+    <path d="M63 56 C63 56 55 49 55 44 C55 38 63 34 63 34 C63 34 71 38 71 44 C71 49 63 56 63 56"/>
+    <path d="M63 56 V62"/>
+    <path d="M59 62 H67"/>
+  </g>
+</g></g>
+  </g>
+  <text x="100" y="254" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="15" font-weight="700" fill="#1a1f2b">Baralho</text>
+</svg>

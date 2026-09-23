@@ -81,9 +81,11 @@ function cardEl(card, kind, opts = {}) {
   const selected = typeof opts.selected === 'function' ? opts.selected(card) : !!opts.selected;
   const el = document.createElement('div');
   el.className = 'card ' + kind + (opts.small ? ' small' : '') + (opts.selectable ? ' selectable' : '') + (selected ? ' selected' : '');
+  // Ícone SVG da carta (com fallback para emoji se o SVG não carregar).
   el.innerHTML =
-    `<div class="icon">${emojiFor(kind, card.en)}</div>` +
-    `<div class="name-en">${escapeHtml(card.en)}</div>` +
+    `<img class="card-icon" src="/icons/${card.id}.svg" alt="${escapeHtml(card.pt)}" ` +
+    `onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />` +
+    `<div class="icon icon-fallback">${emojiFor(kind, card.en)}</div>` +
     `<div class="name-pt">${escapeHtml(card.pt)}</div>`;
   if (opts.onClick) el.addEventListener('click', () => opts.onClick(card, el));
   return el;

@@ -118,6 +118,11 @@ section[id^="screen-"] { animation: fadeIn 0.24s ease; }
 
 .btn-block { width: 100%; }
 .btn-lg { font-size: 18px; padding: 17px 28px; }
+.btn.ready { animation: readyPulse 1.2s ease-in-out infinite; }
+@keyframes readyPulse {
+  0%, 100% { box-shadow: 0 8px 26px var(--red-glow); }
+  50% { box-shadow: 0 0 0 6px rgba(231, 76, 60, 0.25), 0 8px 34px var(--red-glow); }
+}
 
 /* Painéis */
 .panel {
@@ -228,9 +233,16 @@ section[id^="screen-"] { animation: fadeIn 0.24s ease; }
   position: relative;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
+.card .card-icon {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  display: block;
+}
 .card .icon { font-size: 27px; line-height: 1; }
-.card .name-en { font-weight: 700; font-size: 12px; line-height: 1.15; }
-.card .name-pt { font-size: 11px; color: #5a6270; }
+.card .icon-fallback { display: none; }
+.card .name-pt { font-weight: 700; font-size: 12px; line-height: 1.15; }
+.card .name-en { font-size: 10px; color: #8a93a3; }
 .card.clue { border-top: 4px solid var(--red-bright); }
 .card.means { border-top: 4px solid var(--blue); }
 .card.small { min-height: 74px; padding: 8px 6px; }

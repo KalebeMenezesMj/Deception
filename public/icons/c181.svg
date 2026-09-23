@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8ecf2"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="184" height="264" rx="16" fill="url(#bg)" stroke="#2a3140" stroke-width="3"/>
+  <path d="M24 8 H176 Q192 8 192 24 V46 H8 V24 Q8 8 24 8 Z" fill="#e74c3c"/>
+  <rect x="8" y="46" width="184" height="6" fill="#c0392b"/>
+  <rect x="14" y="58" width="172" height="180" rx="10" fill="none" stroke="#c8cfdb" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <g transform="translate(100,130) scale(1.5)">
+    <g transform="translate(-50,-50)"><g fill="none" stroke="#1c2331" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M38 26 C28 34 28 52 38 60 C48 52 48 34 38 26 Z"/>
+  <path d="M38 30 L38 56"/>
+  <path d="M62 20 C52 28 52 46 62 54 C72 46 72 28 62 20 Z"/>
+  <path d="M62 24 L62 50"/>
+  <path d="M50 50 C44 58 44 72 50 78 C56 72 56 58 50 50 Z"/>
+  <path d="M50 54 L50 74"/>
+</g></g>
+  </g>
+  <text x="100" y="254" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="15" font-weight="700" fill="#1a1f2b">Folhas de chá</text>
+</svg>
